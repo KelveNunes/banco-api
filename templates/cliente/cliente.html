@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}
+cliente
+{% endblock %}
+{% block content %}
+
+    <div class="cliente-container">
+        <h1>Login</h1>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Usuário" required>
+            <input type="password" name="password" placeholder="Senha" required>
+            <button type="submit">Entrar</button>
+        </form>
+        <div class="links">
+            <a href="{% url 'forgot-password' %}">Esqueci minha senha</a>
+            <br>
+            <a href="{% url 'new-user' %}">Criar uma conta</a>
+        </div>
+    </div>
+{% endblock %}    

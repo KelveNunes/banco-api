@@ -35,9 +35,9 @@ services:
     depends_on:
       - redis
       - web
-    command: celery -A bancoapi worker --loglevel=info
+    command: celery -A bancoApi worker --loglevel=info
     environment:
-      - DJANGO_SETTINGS_MODULE=bancoapi.settings
+      - DJANGO_SETTINGS_MODULE=bancoApi.settings
       - CELERY_BROKER_URL=redis://redis:6379/0
 
   celery-beat:
@@ -46,9 +46,9 @@ services:
     depends_on:
       - redis
       - web
-    command: celery -A bancoapi beat --loglevel=info
+    command: celery -A bancoApi beat --loglevel=info
     environment:
-      - DJANGO_SETTINGS_MODULE=bancoapi.settings
+      - DJANGO_SETTINGS_MODULE=bancoApi.settings
       - CELERY_BROKER_URL=redis://redis:6379/0
 
 volumes:

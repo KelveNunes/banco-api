@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -38,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bancoApi',
-    'rest_framework',
-    'cliente',
+    'django_celery_beat',
+    'cliente.apps.ClienteConfig',
     'conta',
     'historico',
     'transacao',
@@ -61,7 +62,7 @@ ROOT_URLCONF = 'bancoApi.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -73,6 +74,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'bancoApi.wsgi.application'
 
@@ -116,7 +118,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "America/Sao_Paulo"
+
 
 USE_I18N = True
 
@@ -126,7 +129,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+# Definindo a raiz do projeto
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Diretório onde os arquivos estáticos serão copiados
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# Diretórios onde os arquivos estáticos estão localizados
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'bancoApi', 'static'),  # Aqui você coloca os arquivos estáticos do seu projeto
+]
+
+STATIC_URL = '/static/'
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

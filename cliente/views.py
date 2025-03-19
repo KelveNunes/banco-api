@@ -1,3 +1,11 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def cliente(request):
+    return render(request, 'cliente/cliente.html')
+
+def forgotPassword(request):
+    return render(request, 'cliente/forgotPassword.html')
+
+def newUser(request):
+    return render(request, 'cliente/newUser.html')
