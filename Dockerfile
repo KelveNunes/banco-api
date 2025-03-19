@@ -9,6 +9,7 @@ COPY requirements.txt /app/
 
 # Instalar as dependências
 RUN pip install --no-cache-dir -r requirements.txt
+RUN echo "export PATH=$PATH:/usr/local/bin" >> ~/.bashrc
 
 # Copiar o restante dos arquivos para dentro do container
 COPY . /app/

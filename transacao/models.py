@@ -1,5 +1,5 @@
 from django.db import models
-from abc import ABC, abstractmethod
+from abc import ABC
 
 class Transacao(models.Model):
     valor = models.FloatField()
